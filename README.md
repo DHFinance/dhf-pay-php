@@ -8,3 +8,9 @@ PHP SDK to integrate with DHFinance in minutes.
             "url": "https://github.com/DHFinance/dhf-pay-php.git"
         }
     ],
+
+then 
+ "require": {
+        dhfinance/dhf-pay-php": "*"
+
+    },
