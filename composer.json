@@ -2,7 +2,7 @@
     "name": "dhfinance/dhf-pay-php",
     "description": "DHF Pay phpsdk",
     "type": "library",
-    "license": "Apache 2.0",
+    "license": "Apache-2.0",
     "minimum-stability": "dev",
     "require": {
         "guzzlehttp/guzzle": "^7.0"
