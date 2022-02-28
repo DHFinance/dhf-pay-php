@@ -20,3 +20,7 @@ PHP SDK to integrate with DHFinance in minutes.
             ->add($params);
 ```
  
+# Payments List
+```sh
+$dhfPay->payments()->getAll();
+```
