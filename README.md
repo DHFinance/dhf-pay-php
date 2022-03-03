@@ -24,3 +24,17 @@ PHP SDK to integrate with DHFinance in minutes.
 ```sh
 $dhfPay->payments()->getAll();
 ```
+
+
+# Get paymen by id
+```sh
+$dhfPay->payments()->getOne();
+```
+# Get transactions list by
+```sh
+$dhfPay->transaction()->getAll()
+```
+
+
+
+
