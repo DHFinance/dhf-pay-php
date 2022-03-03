@@ -30,7 +30,7 @@ $dhfPay->payments()->getAll();
 ```sh
 $dhfPay->payments()->getOne();
 ```
-# Get transactions list by
+# Get transactions list
 ```sh
 $dhfPay->transaction()->getAll()
 ```
