@@ -34,6 +34,11 @@ $dhfPay->payments()->getOne();
 ```sh
 $dhfPay->transaction()->getAll()
 ```
+# Run tests
+```sh
+./vendor/bin/phpunit tests/DhfTestCasse.php 
+```
+
 
 
 
