@@ -31,4 +31,13 @@ class DhfTestCasse extends \PHPUnit\Framework\TestCase
         $this->assertSame(['id'=>'1'], $res);
     }
 
+    public function testErrorIfGateIsNotAccessible():void{
+        $stub = $this->createMock(DHFPay::class);
+        $stub->method('request')
+            ->willThrowException(new Exception('network error'));
+        $p = new \DHF\Pay\Transaction($stub);
+        $this->expectException(Exception::class);
+        $p->getAll();
+    }
+
 }
