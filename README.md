@@ -26,7 +26,7 @@ $dhfPay->payments()->getAll();
 ```
 
 
-# Get paymen by id
+# Get payments by id
 ```sh
 $dhfPay->payments()->getOne();
 ```
