@@ -1,5 +1,7 @@
 # dhf-pay-php
 PHP SDK to integrate with DHFinance in minutes.
+# Requirements
+php 7.2 or higher
 # Install
 
 ```sh
