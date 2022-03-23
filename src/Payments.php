@@ -10,7 +10,7 @@ namespace DHF\Pay;
 class Payments
 {
 
-    const URL = '/api/payment';
+    const URL = '/payment';
 
     /**
      * @var DHFPay
