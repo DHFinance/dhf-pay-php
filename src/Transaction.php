@@ -9,7 +9,7 @@ namespace DHF\Pay;
  */
 class Transaction
 {
-    const URL = '/api/transaction';
+    const URL = 'transaction';
 
     /**
      * @var DHFPay
