@@ -5,6 +5,7 @@ namespace DHF\Pay;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\RequestOptions;
 
 class DHFPay
 {
@@ -22,6 +23,23 @@ class DHFPay
      * @var string
      */
     protected $endpoint;
+    /**
+     * @var string
+     */
+    protected $token;
+    /**
+     * @var Client
+     */
+    protected $client;
+
+    public function __construct(string $endpoint, string $token)
+    {
+        $this->endpoint = $endpoint;
+        $this->token = $token;
+        $this->payments = new Payments($this);
+        $this->transactions = new Transaction($this);
+        $this->client = new Client(['base_uri' => $this->endpoint]);
+    }
 
     /**
      * @return Payments
@@ -38,26 +56,6 @@ class DHFPay
     {
         return $this->client;
     }
-
-    /**
-     * @var string
-     */
-    protected $token;
-
-    /**
-     * @var Client
-     */
-    protected $client;
-
-    public function __construct(string $endpoint, string $token)
-    {
-        $this->endpoint = $endpoint;
-        $this->token = $token;
-        $this->payments = new Payments($this);
-        $this->transactions = new Transaction($this);
-        $this->client = new Client(['base_uri' => $this->endpoint]);
-    }
-
 
     /**
      * @return Transaction
@@ -83,17 +81,14 @@ class DHFPay
             [
                 //'debug'=>true,
                 'headers' =>
-                [
-                    'Authorization' => "Bearer {$this->token}"
-                ],
-                \GuzzleHttp\RequestOptions::JSON => $body
+                    [
+                        'Authorization' => "Bearer {$this->token}"
+                    ],
+                RequestOptions::JSON => $body
             ]
         )->getBody()->getContents();
 
-        var_dump($newresponse);
-
-        return json_decode( $newresponse, true );
-
+        return json_decode($newresponse, true);
     }
 
 }

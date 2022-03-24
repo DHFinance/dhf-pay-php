@@ -3,6 +3,8 @@
 
 namespace DHF\Pay;
 
+use GuzzleHttp\Exception\GuzzleException;
+
 /**
  * Class Payments
  * @package DHF\Pay
@@ -30,7 +32,7 @@ class Payments
      * Get all payments
      *
      * @return array
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      */
     public function getAll(): array
     {
@@ -52,7 +54,7 @@ class Payments
      *
      * @param array $params
      * @return array
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      */
     public function add(array $params): array
     {
@@ -64,7 +66,7 @@ class Payments
      *
      * @param $id
      * @return array
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      */
     public function getOne($id): array
     {

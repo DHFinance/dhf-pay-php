@@ -3,6 +3,8 @@
 
 namespace DHF\Pay;
 
+use GuzzleHttp\Exception\GuzzleException;
+
 /**
  * Class Transaction
  * @package DHF\Pay
@@ -29,7 +31,7 @@ class Transaction
      * Get all transaction
      *
      * @return array
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      */
     public function getAll(): array
     {
