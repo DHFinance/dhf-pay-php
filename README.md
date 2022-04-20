@@ -38,11 +38,19 @@ $dhfPay->payments()->getOne();
 $dhfPay->transaction()->getAll()
 ```
 # Run tests
+Unit tests
 ```sh
 ./vendor/bin/phpunit tests/DhfTestCasse.php 
 ```
-
-
+For a run integration tests  set variables in tests/.env file (see .env.example)
+```sh
+TEST_SERVER_API=<API endpoint>
+TEST_SERVER_TOKEN=<token>
+```
+ then  run
+```sh
+./vendor/bin/phpunit tests/DhfInIntegrationTestCasse.php
+```
 
 
 

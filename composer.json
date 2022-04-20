@@ -11,7 +11,8 @@
     "require-dev": {
         "ext-curl": "*",
         "phpunit/phpunit": "^8.5.5 || ^9.3.5",
-        "psr/log": "^1.1 || ^2.0 || ^3.0"
+        "psr/log": "^1.1 || ^2.0 || ^3.0",
+        "vlucas/phpdotenv": "^5.4@dev"
     },
     "autoload": {
         "psr-4": {
