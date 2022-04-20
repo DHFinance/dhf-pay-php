@@ -5,6 +5,7 @@ namespace DHF\Pay;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\RequestOptions;
 
 class DHFPay
@@ -74,21 +75,46 @@ class DHFPay
      */
     public function request($method, $uri, $body): array
     {
+        try {
 
-        $newresponse = $this->client->request(
-            $method,
-            $uri,
-            [
-                //'debug'=>true,
-                'headers' =>
-                    [
-                        'Authorization' => "Bearer {$this->token}"
-                    ],
-                RequestOptions::JSON => $body
-            ]
-        )->getBody()->getContents();
+            $newresponse = $this->client->request(
+                $method,
+                $uri,
+                [
+                    //'debug'=>true,
+                    'headers' =>
+                        [
+                            'Authorization' => "Bearer {$this->token}"
+                        ],
+                    RequestOptions::JSON => $body
+                ]
+            )->getBody()->getContents();
+
+        } catch (RequestException $exception) {
+            throw $this->processException($exception);
+        }
+
 
         return json_decode($newresponse, true);
+    }
+
+    protected function processException(RequestException $exception): \Exception
+    {
+
+        switch ($exception->getCode()) {
+            case 401:
+                $e = new Exception\DHFUnauthorisedException($exception->getMessage(), $exception->getCode(), $exception);
+                break;
+            case 400:
+                $e = new Exception\DHFBadRequestException($exception->getMessage(), $exception->getCode(), $exception);
+                break;
+            default:
+                $e = $exception;
+                break;
+        }
+
+        return $e;
+
     }
 
 }

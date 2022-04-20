@@ -9,7 +9,8 @@
 
 ### Report bugs using Github issues
 
-You can report a bug by clicking on the issues tab and 'New Issue'. Describe the issue the best you can. This makes it easy to fork and create a branch named after the issue purposed for fixing it.
+You can report a bug by clicking on the issues tab and 'New Issue'. Describe the issue the best you can. This makes it
+easy to fork and create a branch named after the issue purposed for fixing it.
 
 Thank you for your interest in the project!
 

@@ -76,9 +76,26 @@ class DhfInIntegrationTestCasse extends \PHPUnit\Framework\TestCase
      */
     public function testCreateWrongPayment()
     {
-        $this->expectException(Exception::class);
-        $payment = $this
+        $this->expectException(DHF\Pay\Exception\DHFBadRequestException::class);
+        $this
             ->dhf
+            ->payments()
+            ->add($this->spoiledPayment);
+
+    }
+
+    /**
+     * Test create payment
+     *
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function testWrongToken()
+    {
+        $this->expectException(DHF\Pay\Exception\DHFUnauthorisedException::class);
+        $api = $_ENV['TEST_SERVER_API'];
+        $token = 'O_o';
+        $dhf = new DHFPay($api, $token);
+        $dhf
             ->payments()
             ->add($this->spoiledPayment);
 
