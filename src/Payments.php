@@ -13,6 +13,7 @@ class Payments
 {
 
     const URL = 'payment';
+    const MOTS_S=1000000000;
 
     /**
      * @var DHFPay
@@ -36,7 +37,18 @@ class Payments
      */
     public function getAll(): array
     {
-        return $this->gate->request('GET', $this->getUrl(), []);
+        return array_map(function ($e){
+            return $this->processPayment($e);
+        },$this->gate->request('GET', $this->getUrl(), []));
+    }
+
+    /**
+     * @param array $p
+     * @return array
+     */
+    private function processPayment(array $p){
+        $p['amount']= $p['amount']/self::MOTS_S;
+        return $p;
     }
 
     /**
@@ -70,7 +82,7 @@ class Payments
      */
     public function getOne($id): array
     {
-        return $this->gate->request('GET', $this->getUrl() . "/" . $id, []);
+        return $this->processPayment($this->gate->request('GET', $this->getUrl() . "/" . $id, []));
     }
 
 }

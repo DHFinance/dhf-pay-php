@@ -9,8 +9,8 @@ class DhfInIntegrationTestCasse extends \PHPUnit\Framework\TestCase
     protected $dhf;
 
     protected $payment = [
-        'amount' => '10',
-        'comment' => 'Test payment'
+        'amount' =>2.6,
+        'comment' => 'Test payment last build'
     ];
 
     protected $spoiledPayment = [
@@ -121,14 +121,18 @@ class DhfInIntegrationTestCasse extends \PHPUnit\Framework\TestCase
      *
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function testGetWrongTransactions()
+    public function _testGetTransactionsAuth()
     {
-        $trensactions = $this
-            ->dhf
+        $this->expectException(DHF\Pay\Exception\DHFUnauthorisedException::class);
+        $api = $_ENV['TEST_SERVER_API'];
+        $token = 'O_o';
+        $dhf = new DHFPay($api, $token);
+
+        $dhf
             ->transaction()
             ->getAll();
 
-        $this->assertIsArray($trensactions);
     }
+
 
 }
