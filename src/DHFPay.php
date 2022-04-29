@@ -77,7 +77,7 @@ class DHFPay
     {
         try {
 
-            $newresponse = $this->client->request(
+            $newresponse = (string)$this->client->request(
                 $method,
                 $uri,
                 [
@@ -88,7 +88,7 @@ class DHFPay
                         ],
                     RequestOptions::JSON => $body
                 ]
-            )->getBody()->getContents();
+            )->getBody();
 
         } catch (RequestException $exception) {
             throw $this->processException($exception);
