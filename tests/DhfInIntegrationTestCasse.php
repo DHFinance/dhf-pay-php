@@ -134,5 +134,19 @@ class DhfInIntegrationTestCasse extends \PHPUnit\Framework\TestCase
 
     }
 
+    /**
+     * Test create payment
+     *
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+//    public function testGetStores()
+//    {
+//        $s = $this->dhf
+//            ->transaction()
+//            ->getAll();
+//
+//        $this->assertIsArray($s);
+//    }
+
 
 }
