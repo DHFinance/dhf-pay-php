@@ -1,15 +1,17 @@
 <?php
 
 use DHF\Pay\DHFPay;
+use GuzzleHttp\Exception\GuzzleException;
+use PHPUnit\Framework\TestCase;
 
-class DhfInIntegrationTestCasse extends \PHPUnit\Framework\TestCase
+class DhfInIntegrationTestCasse extends TestCase
 {
 
     /** @var DHFPay */
     protected $dhf;
 
     protected $payment = [
-        'amount' =>2.6,
+        'amount' => 2.6,
         'comment' => 'Test payment last build'
     ];
 
@@ -33,7 +35,7 @@ class DhfInIntegrationTestCasse extends \PHPUnit\Framework\TestCase
     /**
      * Test create payment
      *
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      */
     public function testCreatePayment()
     {
@@ -53,9 +55,7 @@ class DhfInIntegrationTestCasse extends \PHPUnit\Framework\TestCase
         $this->assertSame($payment['id'], $res['id']);
     }
 
-    /**
-     *
-     */
+
     public function testGetAllPayments()
     {
         $payments = $this
@@ -72,7 +72,7 @@ class DhfInIntegrationTestCasse extends \PHPUnit\Framework\TestCase
     /**
      * Test create payment
      *
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      */
     public function testCreateWrongPayment()
     {
@@ -85,9 +85,9 @@ class DhfInIntegrationTestCasse extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Test create payment
+     * Test wrong  payment
      *
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      */
     public function testWrongToken()
     {
@@ -104,7 +104,7 @@ class DhfInIntegrationTestCasse extends \PHPUnit\Framework\TestCase
     /**
      * Test create payment
      *
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      */
     public function testGetTransactions()
     {
@@ -116,37 +116,25 @@ class DhfInIntegrationTestCasse extends \PHPUnit\Framework\TestCase
         $this->assertIsArray($trensactions);
     }
 
+
     /**
      * Test create payment
      *
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      */
-    public function _testGetTransactionsAuth()
+    public function testGetStores()
     {
-        $this->expectException(DHF\Pay\Exception\DHFUnauthorisedException::class);
-        $api = $_ENV['TEST_SERVER_API'];
-        $token = 'O_o';
-        $dhf = new DHFPay($api, $token);
+        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+        $dotenv->load();
+        $store_id = (int)$_ENV['TEST_STORE_ID'];
+        $s = $this->dhf
+            ->store()
+            ->get($store_id);
 
-        $dhf
-            ->transaction()
-            ->getAll();
+        $this->assertIsArray($s);
+        $this->assertSame($store_id, $s['id']);
 
     }
-
-    /**
-     * Test create payment
-     *
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     */
-//    public function testGetStores()
-//    {
-//        $s = $this->dhf
-//            ->transaction()
-//            ->getAll();
-//
-//        $this->assertIsArray($s);
-//    }
 
 
 }

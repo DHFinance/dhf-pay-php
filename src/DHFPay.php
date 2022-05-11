@@ -21,6 +21,11 @@ class DHFPay
     protected $transactions;
 
     /**
+     * @var Store
+     */
+    protected $store;
+
+    /**
      * @var string
      */
     protected $endpoint;
@@ -39,7 +44,16 @@ class DHFPay
         $this->token = $token;
         $this->payments = new Payments($this);
         $this->transactions = new Transaction($this);
+        $this->store = new Store($this);
         $this->client = new Client(['base_uri' => $this->endpoint]);
+    }
+
+    /**
+     * @return Store
+     */
+    public function store(): Store
+    {
+        return $this->store;
     }
 
     /**

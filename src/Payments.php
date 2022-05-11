@@ -9,7 +9,7 @@ use GuzzleHttp\Exception\GuzzleException;
  * Class Payments
  * @package DHF\Pay
  */
-class Payments
+class Payments implements EndpointInterface
 {
 
     const URL = 'payment';
@@ -47,7 +47,9 @@ class Payments
      * @return array
      */
     private function processPayment(array $p){
+
         $p['amount']= $p['amount']/self::MOTS_S;
+
         return $p;
     }
 

@@ -9,7 +9,7 @@ use GuzzleHttp\Exception\GuzzleException;
  * Class Transaction
  * @package DHF\Pay
  */
-class Transaction
+class Transaction implements EndpointInterface
 {
     const URL = 'transaction';
 
