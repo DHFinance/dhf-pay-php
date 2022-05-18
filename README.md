@@ -14,7 +14,7 @@ PHP SDK to integrate with DHFinance in minutes.
 
 ```sh
  "require": {
-        dhfinance/dhf-pay-php": "*"
+        dhfinance/dhf-pay-php": "dev-main"
 
     }
 ```
