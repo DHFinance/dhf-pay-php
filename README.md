@@ -52,6 +52,13 @@ $dhfPay->transaction()->getAll()
 
 # Run tests
 
+Install dependencies
+
+```sh
+composer install
+```
+
+
 Set variables in tests/.env file (see .env.example)
 
 ```sh
